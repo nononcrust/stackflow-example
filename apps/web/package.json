@@ -6,10 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
+    "@stackflow/config": "^1.2.1",
     "@stackflow/core": "^1.2.0",
+    "@stackflow/link": "^1.6.1",
     "@stackflow/plugin-basic-ui": "^1.14.1",
     "@stackflow/plugin-renderer-basic": "^1.1.13",
     "@stackflow/react": "^1.5.2",

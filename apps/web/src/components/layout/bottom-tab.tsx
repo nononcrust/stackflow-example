@@ -1,6 +1,7 @@
-import { Push, Replace } from "@/lib/stackflow";
 import { cn } from "@/lib/utils";
 import { HomeIcon, MenuIcon } from "lucide-react";
+import { Link } from "@stackflow/link/future";
+import { Slot } from "radix-ui";
 
 type Tab = "home" | "menu";
 
@@ -17,38 +18,47 @@ export const BottomTab = ({ currentTab }: BottomTabProps) => {
         "fixed bottom-0 left-0 right-0 flex justify-around items-center border-t border-border bg-white"
       )}
     >
-      <BottomTabItem to="tab/home" isActive={currentTab === "home"}>
-        <HomeIcon />
-        <BottomTabLabel>홈</BottomTabLabel>
+      <BottomTabItem isActive={currentTab === "home"}>
+        <Link
+          activityName="HomeTab"
+          activityParams={{}}
+          replace
+          animate={false}
+        >
+          <HomeIcon />
+          <BottomTabLabel>홈</BottomTabLabel>
+        </Link>
       </BottomTabItem>
-      <BottomTabItem to="tab/menu" isActive={currentTab === "menu"}>
-        <MenuIcon />
-        <BottomTabLabel>메뉴</BottomTabLabel>
+      <BottomTabItem isActive={currentTab === "menu"}>
+        <Link
+          activityName="MenuTab"
+          activityParams={{}}
+          replace
+          animate={false}
+        >
+          <MenuIcon />
+          <BottomTabLabel>메뉴</BottomTabLabel>
+        </Link>
       </BottomTabItem>
     </nav>
   );
 };
 
 type BottomTabItemProps = {
-  to: Parameters<typeof Push>[0]["to"];
   children: React.ReactNode;
   isActive: boolean;
 };
 
-const BottomTabItem = ({ to, children, isActive }: BottomTabItemProps) => {
+const BottomTabItem = ({ children, isActive }: BottomTabItemProps) => {
   return (
-    <Replace
-      to={to}
+    <Slot.Root
       className={cn(
         "flex flex-col gap-0.5 text-subtle items-center",
         isActive && "text-main"
       )}
-      options={{
-        animate: false,
-      }}
     >
       {children}
-    </Replace>
+    </Slot.Root>
   );
 };
 

@@ -1,9 +1,9 @@
 import { BottomTab } from "@/components/layout/bottom-tab";
 import { Screen } from "@/components/layout/screen";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
-import { ActivityComponentType } from "@stackflow/react";
+import { ActivityComponentType } from "@stackflow/react/future";
 
-export const MenuTab: ActivityComponentType = () => {
+export const MenuTab: ActivityComponentType<"MenuTab"> = () => {
   return (
     <AppScreen>
       <Screen>

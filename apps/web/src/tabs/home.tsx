@@ -6,25 +6,26 @@ import { Screen } from "@/components/layout/screen";
 import { BottomSheet } from "@/components/ui/bottom-sheet";
 import { Button } from "@/components/ui/button";
 import { Prompt } from "@/components/ui/prompt";
-import { Push } from "@/lib/stackflow";
 import { useRecentPosts } from "@/services/post";
+import { Link } from "@stackflow/link/future";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
-import { ActivityComponentType } from "@stackflow/react";
+import { ActivityComponentType } from "@stackflow/react/future";
 import { BellIcon } from "lucide-react";
 
-export const HomeTab: ActivityComponentType = () => {
+export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
   const { data: recentPosts } = useRecentPosts();
 
   return (
     <AppScreen>
       <Header
         right={
-          <Push
+          <Link
+            activityName="NotificationsScreen"
+            activityParams={{}}
             className="size-8 flex items-center justify-center"
-            to="notifications"
           >
             <BellIcon />
-          </Push>
+          </Link>
         }
       />
       <Screen className="pb-8">
@@ -55,17 +56,17 @@ type PostListItemProps = {
 const PostListItem = ({ post }: PostListItemProps) => {
   return (
     <li>
-      <Push
+      <Link
         className="flex flex-col items-start py-3"
-        to="post-detail"
-        params={{ postId: post.id }}
+        activityName="PostDetailScreen"
+        activityParams={{ postId: post.id }}
         key={post.id}
       >
         <h3 className="font-medium text-lg text-main line-clamp-1 text-start">
           {post.title}
         </h3>
         <p className="text-sub line-clamp-1 text-start">{post.content}</p>
-      </Push>
+      </Link>
     </li>
   );
 };

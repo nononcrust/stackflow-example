@@ -1,6 +1,6 @@
-import { useFlow } from "@/lib/stackflow";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon } from "lucide-react";
+import { Pop } from "@/lib/stackflow";
 
 type HeaderProps = {
   left?: React.ReactNode;
@@ -34,12 +34,10 @@ export const Header = ({ left, title, right }: HeaderProps) => {
 };
 
 const Back = () => {
-  const { pop } = useFlow();
-
   return (
-    <button className="size-8 flex items-center justify-center" onClick={pop}>
+    <Pop className="size-8 flex items-center justify-center">
       <ChevronLeftIcon size={28} />
-    </button>
+    </Pop>
   );
 };
 
