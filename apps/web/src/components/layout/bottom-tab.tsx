@@ -1,7 +1,6 @@
 import { Push, Replace } from "@/lib/stackflow";
 import { cn } from "@/lib/utils";
 import { HomeIcon, MenuIcon } from "lucide-react";
-import { layoutConfig } from "./config";
 
 type Tab = "home" | "menu";
 
@@ -13,8 +12,8 @@ export const BottomTab = ({ currentTab }: BottomTabProps) => {
   return (
     <nav
       className={cn(
-        `h-[${layoutConfig.bottomTabHeight + layoutConfig.safeArea.bottom}px]`,
-        `pb-[${layoutConfig.safeArea.bottom}px]`,
+        `h-[88px]`, // 64px + 24px
+        `pb-[24px]`,
         "fixed bottom-0 left-0 right-0 flex justify-around items-center border-t border-border bg-white"
       )}
     >

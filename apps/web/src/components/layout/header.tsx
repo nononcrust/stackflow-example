@@ -1,7 +1,6 @@
 import { useFlow } from "@/lib/stackflow";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon } from "lucide-react";
-import { layoutConfig } from "./config";
 
 type HeaderProps = {
   left?: React.ReactNode;
@@ -13,14 +12,14 @@ export const Header = ({ left, title, right }: HeaderProps) => {
   return (
     <header
       className={cn(
-        `h-[${layoutConfig.headerHeight + layoutConfig.safeArea.top}px]`,
+        `h-[96px]`, // 헤더 56px + Safe Area 40px
         "fixed top-0 left-0 right-0",
         "bg-white/70 backdrop-blur-sm flex items-end"
       )}
     >
       <div
         className={cn(
-          `px-4 h-[${layoutConfig.headerHeight}px] w-full relative`,
+          `px-4 h-[56px] w-full relative`,
           "flex items-center justify-between border-b border-border"
         )}
       >
