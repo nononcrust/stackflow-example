@@ -12,10 +12,20 @@ export const NotificationsScreen: ActivityComponentType<
     <AppScreen>
       <Header left={<Header.Back />} title="알림" />
       <Screen>
-        <div className="mt-4 flex justify-center">
+        <div className="mt-4 flex justify-center gap-2">
           <Button variant="outlined" asChild>
             <Link activityName="NotificationsScreen" activityParams={{}}>
               스택 계속 쌓기
+            </Link>
+          </Button>
+          <Button variant="outlined" asChild>
+            <Link
+              activityName="HomeTab"
+              activityParams={{}}
+              replace
+              animate={false}
+            >
+              탭으로 바로 돌아가기
             </Link>
           </Button>
         </div>
