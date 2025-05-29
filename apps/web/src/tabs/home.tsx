@@ -5,14 +5,18 @@ import { Header } from "@/components/layout/header";
 import { Screen } from "@/components/layout/screen";
 import { BottomSheet } from "@/components/ui/bottom-sheet";
 import { Button } from "@/components/ui/button";
+import { ChipTabs } from "@/components/ui/chip-tabs";
 import { Prompt } from "@/components/ui/prompt";
 import { useRecentPosts } from "@/services/post";
 import { Link } from "@stackflow/link/future";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react/future";
 import { BellIcon } from "lucide-react";
+import { useState } from "react";
 
 export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
+  const [activeTab, setActiveTab] = useState("1");
+
   const { data: recentPosts } = useRecentPosts();
 
   return (
@@ -29,7 +33,14 @@ export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
         }
       />
       <Screen className="pb-8">
-        <h2 className="mt-8 font-semibold text-xl">최근 게시글</h2>
+        <ChipTabs value={activeTab} onChange={setActiveTab}>
+          <ChipTabs.List className="mt-8" size="large">
+            <ChipTabs.Trigger value="1">전체</ChipTabs.Trigger>
+            <ChipTabs.Trigger value="2">인기글</ChipTabs.Trigger>
+            <ChipTabs.Trigger value="3">최근</ChipTabs.Trigger>
+          </ChipTabs.List>
+        </ChipTabs>
+        <h2 className="mt-4 font-semibold text-xl">최근 게시글</h2>
         <ul className="mt-3 flex flex-col">
           {recentPosts.map((post) => (
             <PostListItem key={post.id} post={post} />
