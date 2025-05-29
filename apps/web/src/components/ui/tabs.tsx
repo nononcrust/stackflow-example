@@ -110,7 +110,7 @@ const TabsTrigger = ({
       {children}
       {activeTab === value && (
         <motion.span
-          layoutId="bubble"
+          layoutId="underline"
           className="absolute h-[2px] left-0 right-0 bottom-0 bg-white mix-blend-difference"
           style={{ borderRadius: 9999 }}
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
