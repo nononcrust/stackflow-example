@@ -7,6 +7,7 @@ import { PostDetailScreen } from "@/screens/post-detail";
 import { MenuTab } from "@/tabs/menu";
 import { UserProfileScreen } from "@/screens/user-profile";
 import { defineConfig } from "@stackflow/config";
+import { AddPostScreen } from "@/screens/add-post";
 
 const config = defineConfig({
   activities: [
@@ -15,6 +16,7 @@ const config = defineConfig({
     { name: "NotificationsScreen" },
     { name: "PostDetailScreen" },
     { name: "UserProfileScreen" },
+    { name: "AddPostScreen" },
   ],
   transitionDuration: 350,
   initialActivity: () => "HomeTab",
@@ -28,6 +30,7 @@ export const { Stack } = stackflow({
     NotificationsScreen,
     PostDetailScreen,
     UserProfileScreen,
+    AddPostScreen,
   },
   plugins: [
     basicRendererPlugin(),
@@ -42,6 +45,7 @@ declare module "@stackflow/config" {
     HomeTab: object;
     MenuTab: object;
     NotificationsScreen: object;
+    AddPostScreen: object;
     PostDetailScreen: { postId: string };
     UserProfileScreen: { userId: string };
   }

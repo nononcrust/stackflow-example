@@ -6,12 +6,15 @@ import { Screen } from "@/components/layout/screen";
 import { BottomSheet } from "@/components/ui/bottom-sheet";
 import { Button } from "@/components/ui/button";
 import { ChipTabs } from "@/components/ui/chip-tabs";
+import { Dialog } from "@/components/ui/dialog";
+import { Fab } from "@/components/ui/fab";
+import { Input } from "@/components/ui/input";
 import { Prompt } from "@/components/ui/prompt";
 import { useRecentPosts } from "@/services/post";
 import { Link } from "@stackflow/link/future";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react/future";
-import { BellIcon } from "lucide-react";
+import { BellIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 
 export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
@@ -47,11 +50,20 @@ export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
           ))}
         </ul>
         <div className="flex gap-2">
+          <DialogExample />
           <PromptExample />
           <BottomSheetExample />
         </div>
       </Screen>
       <BottomTab currentTab="home" />
+      <Fab.Container>
+        <Link activityName="AddPostScreen" activityParams={{}}>
+          <Fab withLabel>
+            <PlusIcon />
+            글쓰기
+          </Fab>
+        </Link>
+      </Fab.Container>
     </AppScreen>
   );
 };
@@ -82,11 +94,46 @@ const PostListItem = ({ post }: PostListItemProps) => {
   );
 };
 
+const DialogExample = () => {
+  return (
+    <Dialog>
+      <Dialog.Trigger asChild>
+        <Button variant="outlined">모달 열기</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <Dialog.Header>
+          <Dialog.Title>메뉴 추가</Dialog.Title>
+          <Dialog.Description>
+            추가할 메뉴의 정보를 입력해주세요.
+          </Dialog.Description>
+        </Dialog.Header>
+        <Dialog.Body className="h-[120px] flex flex-col justify-center">
+          <span className="mb-2">이름</span>
+          <Input />
+          <span className="mt-4 mb-2">설명</span>
+          <Input />
+          <span className="mt-4 mb-2">추가 입력</span>
+          <Input />
+          <span className="mt-4 mb-2">기타</span>
+          <Input />
+        </Dialog.Body>
+        <Dialog.Footer>
+          <Dialog.Close asChild className="mt-6">
+            <Button className="w-full" size="xlarge">
+              추가하기
+            </Button>
+          </Dialog.Close>
+        </Dialog.Footer>
+      </Dialog.Content>
+    </Dialog>
+  );
+};
+
 const PromptExample = () => {
   return (
     <Prompt>
       <Prompt.Trigger asChild>
-        <Button variant="outlined">모달 열기</Button>
+        <Button variant="outlined">컨펌 모달 열기</Button>
       </Prompt.Trigger>
       <Prompt.Content>
         <Prompt.Header>
@@ -117,7 +164,9 @@ const BottomSheetExample = () => {
             바텀시트에도 Safe Area를 적용해야 합니다.
           </BottomSheet.Description>
         </BottomSheet.Header>
-        <BottomSheet.Body className="h-[240px]" />
+        <BottomSheet.Body>
+          <Input />
+        </BottomSheet.Body>
         <BottomSheet.Footer>
           <Button className="w-full" size="xlarge">
             닫기
