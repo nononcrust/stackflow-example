@@ -1,4 +1,10 @@
-import { stackflow, useFlow } from "@stackflow/react/future";
+"use client";
+
+import {
+  stackflow,
+  StackflowPluginsEntry,
+  useFlow,
+} from "@stackflow/react/future";
 import { basicRendererPlugin } from "@stackflow/plugin-renderer-basic";
 import { basicUIPlugin } from "@stackflow/plugin-basic-ui";
 import { NotificationsScreen } from "@/screens/notifications";
@@ -8,6 +14,7 @@ import { MenuTab } from "@/tabs/menu";
 import { UserProfileScreen } from "@/screens/user-profile";
 import { defineConfig } from "@stackflow/config";
 import { AddPostScreen } from "@/screens/add-post";
+import { GlobalAppBridgeMessageEventHandler } from "./app-bridge";
 
 const config = defineConfig({
   activities: [
@@ -20,6 +27,13 @@ const config = defineConfig({
   ],
   transitionDuration: 350,
   initialActivity: () => "HomeTab",
+});
+
+const providersPlugin: StackflowPluginsEntry = () => ({
+  key: "providers",
+  render: () => {
+    return <GlobalAppBridgeMessageEventHandler />;
+  },
 });
 
 export const { Stack } = stackflow({
@@ -37,6 +51,7 @@ export const { Stack } = stackflow({
     basicUIPlugin({
       theme: "cupertino",
     }),
+    providersPlugin,
   ],
 });
 

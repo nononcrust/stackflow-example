@@ -13,7 +13,7 @@ import { Prompt } from "@/components/ui/prompt";
 import { useRecentPosts } from "@/services/post";
 import { Link } from "@stackflow/link/future";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
-import { ActivityComponentType } from "@stackflow/react/future";
+import { ActivityComponentType, useStack } from "@stackflow/react/future";
 import { BellIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -21,6 +21,8 @@ export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
   const [activeTab, setActiveTab] = useState("1");
 
   const { data: recentPosts } = useRecentPosts();
+
+  const stack = useStack();
 
   return (
     <AppScreen>
@@ -36,6 +38,7 @@ export const HomeTab: ActivityComponentType<"HomeTab"> = () => {
         }
       />
       <Screen className="pb-8">
+        <span>스택: {stack.activities.length}</span>
         <ChipTabs value={activeTab} onChange={setActiveTab}>
           <ChipTabs.List className="mt-8" size="large">
             <ChipTabs.Trigger value="1">전체</ChipTabs.Trigger>
